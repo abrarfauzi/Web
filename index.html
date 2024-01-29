@@ -12,83 +12,84 @@
         Read more here: https://tailwindcss.com/docs/installation 
     -->
     <!--<script src="https://cdn.tailwindcss.com"></script>-->
-    <!-- example for dark theme styling when using tailwind cdn -->
+    <!-- example for dark theme styling when using tailwind cdn 
+   -->
 </head>
 
 <body class="dark:text-white light:text-black">
 
-    
-    <div class="container">
-        <div class="calculator">
-            <form>
-                    <div class="display">
-                    <input type="text" id="display"  readonly class="display"> 
-                </div>
-                <div>
-                    <input type="button" value="MC" onclick="clearMemory()" >
-                    <input type="button" value="MR" onclick="recallMemory()" >
-                    <input type="button" value="M+" onclick="addToMemory()" >
-                    <input type="button" value="M-" onclick="subtractFromMemory()" >
-                    <input type="button" value="MS" onclick="storeInMemory()" >
-                    <input type="button" value="M" onclick="addToMemory()" >
-                </div> 
-                <div>
-                    
-                   <input type="button"  value="2^nd" onclick="toggleSecondFunction()" class="operator"> 
-                    <input type="button" value="π" onclick="addToDisplay('Math.PI')" class="operator">
-                    <input type="button" value="e" onclick="addToDisplay('Math.E')" class="operator">
-                    <input type="button" value="C" onclick="clearDisplay()" class="operator" > 
-                    <input type="button"  value="←" onclick="removeLastCharacter()"class="operator" >
 
-                </div>
-                <div>
-                    <input type="button" value="x&sup2" onclick="addToDisplay('**2')" class="operator">
-                    <input type="button" value="1/x" onclick="addToDisplay('1/(')" class="operator">
-                    <input type="button" value="|x|" onclick="addToDisplay('Math.abs(')" class="operator">
-                    <input type="button" value="exp" onclick="addToDisplay('Math.exp(')" class="operator">
-                    <input type="button" value="mod" onclick="addToDisplay('%')" class="operator">
-                </div>
-                <div>
-                   <input type="button" value="&sup2;&radic;x" onclick="sqrtFunction()" class="operator">
-                  <input type="button" value="(" onclick="addToDisplay('(')" class="operator">
-                  <input type="button" value=")" onclick="addToDisplay(')')" class="operator">
-                  <input type="button" value="n!" onclick="factorial()" class="operator">
-                  <input type="button" value=" ÷ "onclick="addToDisplay('/')" class="operator" >
-                </div>
-                <div>
-                     <input type="button" value="x&#696" onclick="addToDisplay('**')" class="operator">
-                    <input type="button" value="7" onclick="addToDisplay('7')" class="operator" class="number"> 
-                    <input type="button" value="8"onclick="addToDisplay('8')" class="operator" class="number">
-                    <input type="button" value="9" onclick="addToDisplay('9')" class="operator" class="number">
-                    <input type="button" value="x" onclick="addToDisplay('*')"class="operator" >
-                </div>
-                <div>
-                     <input type="button" value="10^x" onclick="addToDisplay('10**')" class="operator">
-                    <input type="button" value="4" onclick="addToDisplay('4')" class="operator" class="number"> 
-                    <input type="button" value="5" onclick="addToDisplay('5')" class="operator" class="number">
-                    <input type="button" value="6" onclick="addToDisplay('6')" class="operator" class=" number">
-                    <input type="button" value="-" onclick="addToDisplay('-')"class="operator"  >
-                </div>
-                <div>
-                   <input type="button" value="log" onclick="addToDisplay('Math.log(')" class="operator">
-                   <input type="button" value="1" onclick="addToDisplay('1')" class="operator" class="number"> 
-                   <input type="button" value="2" onclick="addToDisplay('2')" class="operator" class="number">
-                   <input type="button" value="3" onclick="addToDisplay('3')" class="operator" calss="number">
-                   <input type="button" value="+" onclick="addToDisplay('+')" class="operator">
-                </div>
-                
-                <div>
-                    <input type="button" value="ln" onclick="addToDisplay('Math.log(')" class="operator">
-                    <input type="button" value="+/-" onclick="toggleSign()" class="operator">
-                    <input type="button" value="0" onclick="addToDisplay('0')" class="operator" class="number">
-                    <input type="button" value="." onclick="addToDisplay('.')" class="operator">
-                    <input type="button" value="=" onclick="calculate()" class="operator">
-                </div>
-              
-                   
-            </form>
+    <div class="calculator">
+        <input type="text" class="result" readonly>
+        <div class="row">
+            <button class="btn" onclick="clearMemory()">MC</button>
+            <button class="btn" onclick="recalMemory()">MR</button>
+            <button class="btn" onclick="addMemory()">M+</button>
+            <button class="btn" onclick="subtractFromMemory()">M-</button>
+            <button class="btn" onclick="storeInMemory()">MS</button>
+            <button class="btn" onclick="addMemory()">m<sup>-</sup></button>
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="notImplemented()">2<sup>nd</sup></button>
+            <button class="operator" onclick="appendChar('pi')">&pi;</button>
+            <button class="operator" onclick="appendChar('e')">e</button>
+            <button class="operator" onclick="deleteAll()">C</button>
+            <button class="operator" onclick="deleteLastChar()">&#9003;</button>
+            
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="appendChar('**2')">x<sup>2</sup></button>
+            <button class="operator" onclick="appendChar('1/')">1/<sub>x</sub></button>
+            <button class="operator" onclick="appendChar('abs')">|x|</button>
+            <button class="operator" onclick="appendChar('exp')">exp</button>
+            <button class="operator" onclick="appendChar('mod')">mod</button>
+            
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="appendChar('sqrt')">&sup2;&radic;x</button>
+            <button class="operator" onclick="appendChar('lpar')">&lpar;</button>
+            <button class="operator" onclick="appendChar('rpar')">&rpar;</button>
+            <button class="operator" onclick="appendChar('factorial')">n!</button>
+            <button class="operator" onclick="appendChar('/')">&divide;</button>
+            
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="appendChar('**')">x<sup>y</sup></button>
+            <button class="number" onclick="appendChar('7')">7</button>
+            <button class="number" onclick="appendChar('8')">8</button>
+            <button class="number" onclick="appendChar('9')">9</button>
+            <button class="operator" onclick="appendChar('*')">X</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="appendChar('10**')">10<sup>x</sup></button>
+            <button class="number" onclick="appendChar('4')">4</button>
+            <button class="number" onclick="appendChar('5')">5</button>
+            <button class="number" onclick="appendChar('6')">6</button>
+            <button class="operator" onclick="appendChar('-')">-</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="appendChar('log')">log</button>
+            <button class="number" onclick="appendChar('1')">1</button>
+            <button class="number" onclick="appendChar('2')">2</button>
+            <button class="number" onclick="appendChar('3')">3</button>
+            <button class="operator" onclick="appendChar('+')">+</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" onclick="appendChar('ln')">ln</button>
+            <button class="operator" onclick="plusMinus()">+/-</button>
+            <button class="number" onclick="appendChar('0')">0</button>
+            <button class="operator" onclick="appendChar('.')">.</button>
+            <button class="operatorEqual" onclick="solve()">=</button>
         </div>
     </div>
+
 
 </body>
 
