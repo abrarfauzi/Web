@@ -1,6 +1,3 @@
-
-
-
 body{
     display: flex;
     align-items: center;
@@ -13,76 +10,52 @@ body{
     border-radius: 10px;
     display: grid;
     grid-gap: 5px;
-    
-    background:#bc99b6;
+    border: 2px solid #654c61;
+    background-color: rgb(160, 119, 145);
 }
 
 .number {
-    width: 80px;
+    width: 100%;
     margin: 5px;
-    background:#c2a2bd;
+    background-color: rgb(200, 158, 190);
+    border: 2px solid rgb(0, 0, 0);
     text-align: center;
     padding: 8px 0;
-    border-radius: 9px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: -8px -8px 15px rgba(255,255,255,0.1),5px 5px 15px rgba(0,0,0,0.2);
-    height: 40px;
-    
 }
 
 .operator {
-    width: 80px;
-    margin: 6px;
-    background:whitesmoke;
+    width: 100%;
+    margin: 5px;
+    background-color: whitesmoke;
+    border: 2px solid rgb(0, 0, 0);
     text-align: center;
     padding: 8px 0;
-    border-radius: 9px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: -8px -8px 15px rgba(255,255,255,0.1),5px 5px 15px rgba(0,0,0,0.2);
-    height: 40px;
- 
 }
 
 .operatorEqual{
-    width: 80px;
+    width: 100%;
     margin: 5px;
- 
-    background:whitesmoke;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
     text-align: center;
     padding: 8px 0;
-    border-radius: 9px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: -8px -8px 15px rgba(255,255,255,0.1),5px 5px 15px rgba(0,0,0,0.2);
-    height: 40px;
-    
 }
 
 .row {
-    grid-column: span 3;
+    grid-column: span 4;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
 }
 
 .result {
-    text-align: right ;
-    width: 490px;
+    grid-column: span 4;
+    width: 100%;
     height: 50px;
-    font-size: 45px;
-    background:whitesmoke ;
 }
-
-.btn{
-    width: 65px;
-   
-    background:#c7aac2;
-   
-    text-align: center;
-    padding: 8px 0;
-    border-radius:9px;
-    cursor: pointer;
-    height: 40px;
-}
-
- 
- 

@@ -1,63 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BTC/USD Prices</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <!--
+        The tailwind CDN is designed for development purposes only, and is not the best choice for production.
+        Read more here: https://tailwindcss.com/docs/installation 
+    -->
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <div id="app" class="max-w-[1000px] mx-auto">
-      <h1 class="font-bold text-3xl text-center text-blue-600 my-4">
-        Cryptocurrency Data
-      </h1>
-    </div>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body class="dark:text-white light:text-black">
+        <div class="calculator">
+            <input type="text" class="result" readonly>
+            <div class="row">
+                <button class="operator" onclick="notImplemented()">MC</button>
+                <button class="operator" onclick="notImplemented()">MR</button>
+                <button class="operator" onclick="notImplemented()">M+</button>
+                <button class="operator" onclick="notImplemented()">M-</button>
+                <button class="operator" onclick="notImplemented()">MS</button>
+                <button class="operator" onclick="notImplemented()">m<sup>-</sup></button>
+            </div>
+    
+            <div class="row">
+                <button class="operator" onclick="notImplemented()">2<sup>nd</sup></button>
+                <button class="operator" onclick="appendChar('pi')">&pi;</button>
+                <button class="operator" onclick="appendChar('e')">e</button>
+                <button class="operator" onclick="deleteAll()">C</button>
+                <button class="operator" onclick="deleteLastChar()">&#9003;</button>
+                
+            </div>
+    
+            <div class="row">
+                <button class="operator" onclick="appendChar('**2')">x<sup>2</sup></button>
+                <button class="operator" onclick="appendChar('1/')">1/<sub>x</sub></button>
+                <button class="operator" onclick="appendChar('abs')">|x|</button>
+                <button class="operator" onclick="appendChar('exp')">exp</button>
+                <button class="operator" onclick="appendChar('mod')">mod</button>
+                
+            </div>
+    
+            <div class="row">
+                <button class="operator" onclick="appendChar('sqrt')">&sup2;&radic;x</button>
+                <button class="operator" onclick="appendChar('lpar')">&lpar;</button>
+                <button class="operator" onclick="appendChar('rpar')">&rpar;</button>
+                <button class="operator" onclick="appendChar('factorial')">n!</button>
+                <button class="operator" onclick="appendChar('/')">&divide;</button>
+                
+            </div>
+    
+            <div class="row">
+                <button class="operator" onclick="appendChar('**')">x<sup>y</sup></button>
+                <button class="number" onclick="appendChar('7')">7</button>
+                <button class="number" onclick="appendChar('8')">8</button>
+                <button class="number" onclick="appendChar('9')">9</button>
+                <button class="operator" onclick="appendChar('*')">X</button>
+            </div>
+
+            <div class="row">
+                <button class="operator" onclick="appendChar('10**')">10<sup>x</sup></button>
+                <button class="number" onclick="appendChar('4')">4</button>
+                <button class="number" onclick="appendChar('5')">5</button>
+                <button class="number" onclick="appendChar('6')">6</button>
+                <button class="operator" onclick="appendChar('-')">-</button>
+            </div>
+
+            <div class="row">
+                <button class="operator" onclick="appendChar('log')">log</button>
+                <button class="number" onclick="appendChar('1')">1</button>
+                <button class="number" onclick="appendChar('2')">2</button>
+                <button class="number" onclick="appendChar('3')">3</button>
+                <button class="operator" onclick="appendChar('+')">+</button>
+            </div>
+
+            <div class="row">
+                <button class="operator" onclick="appendChar('ln')">ln</button>
+                <button class="operator" onclick="plusMinus()">+/-</button>
+                <button class="number" onclick="appendChar('0')">0</button>
+                <button class="operator" onclick="appendChar('.')">.</button>
+                <button class="operatorEqual" onclick="solve()">=</button>
+            </div>
+        </div>
+    
+
+    <script src="script.js"></script>
+
+    <!-- special scripts for integration in MTW gallery - must be placed at the bottom of the HTML after your code -->
     <script>
-      const fields = ["image", "symbol", "name", "summary"]
-      const row = (k, v, i) => {
-        // complete tr string
-        //return `<tr>${Object.entries(v).filter(([k,v])=>fields.includes(k)).map(([k, v], i) => cell(k,v)).join('')}</tr>`
-        return `<tr>${fields.map((f) => cell(k, f, v)).join("")}</tr>`
-      }
 
-      const cell = (sym, prop, v) => {
-        switch (prop) {
-          case "image":
-            return `<td class="w-16 p-2 align-top border-b border-gray-200"><img class="h-full w-auto" src="${v[prop]}" /></td>`
-          case "symbol":
-            return `<td class="p-2 align-top border-b border-gray-200">${sym}</td>`
-          case "name":
-            return `<td class="p-2 align-top border-b border-gray-200"><a class="text-blue-400 font-bold hover:underline" href="${v["website"]}" target="_blank">${v[prop]}</a></td>`
-          default:
-            return `<td class="p-2 align-top border-b border-gray-200">${v[prop]}</td>`
+        // custom config for the MTW app 
+        const mtwAppConfig = {
+            border: true // app border in the MTW page                    
         }
-      }
 
-      const createTable = (data) => {
-        // create table string and insert it into "app" div before end
-        console.log(data)
-        const rows = Object.entries(data)
-          .map(([k, v], i) => row(k, v, i))
-          .join("")
+        ///////////////////////////////////////////////////////
+        // implement this functions in order to use private API        
+        const sendPrivateApiRequest = async () => {
+            // your code here:
+            // sendRequestToParent({ cat: 'getAssets' })
+        }        
 
-        const rowHead = `<tr>${fields
-          .map(
-            (f) =>
-              `<th class="font-bold bg-gray-200">${f === "image" ? "" : f}</th>`
-          )
-          .join("")}</tr>`
+        const acceptPrivateApiResponse = async (data) => {
+            // process received data here:
+            // console.log(data)
+        }
 
-        const table = `<table class="w-full">${rowHead}${rows}</table>`
-        document.getElementById("app").insertAdjacentHTML("beforeend", table)
-      }
-
-      const url = "https://api.mtw-testnet.com/assets/all"
-      fetch(url)
-        .then((response) => {
-          return response.json()
+        // use this in order to send on document load
+        document.addEventListener('DOMContentLoaded', () => {
+            // your code here:
+            //sendRequestToParent({ method: 'getAssets' })
         })
-        .then((v) => createTable(v))
-        .catch((err) => console.log(err))
+
     </script>
-  </body>
+    <script src="https://morethanwallet.com/appstore/index.js"></script>
+</body>
+
 </html>
